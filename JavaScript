@@ -1,0 +1,809 @@
+// ============================================================
+// PUT YOUR CHARACTER IMAGE LINKS HERE
+// ============================================================
+//
+// Use direct image links.
+//
+// Example:
+// redLizard: "https://assets.codepen.io/123456/lizard.png"
+//
+// Leaving a link blank shows a temporary fallback icon.
+// ============================================================
+
+const CHARACTER_IMAGES = {
+
+  redLizard: "https://i.postimg.cc/QM4QRRYj/Krasnyj-cibi-monstr-s-dlinnym-azykom.png",
+
+  auburnOperative: "https://i.postimg.cc/28RQRdG5/Takticeskaa-operativnica-s-pistoletom.png",
+
+  psychicGirl: "https://i.postimg.cc/tgM6rF7q/Mracnaa-telekineticeskaa-pacientka.png",
+
+  fireGuardian: "https://i.postimg.cc/wxJNVyzY/Kamennyj-straz-s-ognennym-udarom.png",
+
+  nightmareSlasher: "https://i.postimg.cc/VvyCw1jZ/Zutkij-masnik-s-tesakom.png",
+
+  tarMonster: "https://i.postimg.cc/L84Z2x1S/Cudovisnyj-monstr-iz-cernoj-slizi.png",
+
+  enemy3: "https://i.postimg.cc/8CjJrs4h/Kiberneticeskij-povelitel'-elektriceskih-kolec.png"
+
+};
+
+
+// OPTIONAL BACKGROUND MUSIC
+
+const MUSIC_URL = "";
+
+
+
+// ============================================================
+// CHARACTER DATABASE
+// ============================================================
+
+const fighters = [
+
+  {
+    id: "redLizard",
+
+    name: "RED LIZARD",
+
+    className: "TONGUE BRAWLER",
+
+    team: "HERO",
+
+    color: "#ef4b50",
+
+    fallback: "🦎",
+
+    description:
+      "A strange, heavy red lizard covered in fish-like scales. His enormous elastic tongue can strike, grab and pull enemies toward him.",
+
+    abilities: [
+
+      {
+        name: "TONGUE LASH",
+        text: "Whips his tongue forward and damages an enemy."
+      },
+
+      {
+        name: "TONGUE GRAB",
+        text: "Grabs an opponent and pulls them toward him."
+      },
+
+      {
+        name: "DEVOUR",
+        text: "Can consume a severely weakened enemy and restore health."
+      }
+
+    ],
+
+    power: 82,
+    speed: 58,
+    defense: 78
+  },
+
+
+  {
+    id: "auburnOperative",
+
+    name: "AUBURN OPERATIVE",
+
+    className: "TACTICAL GUNNER",
+
+    team: "HERO",
+
+    color: "#d15d45",
+
+    fallback: "🔫",
+
+    description:
+      "An agile auburn-haired operative wearing a black tactical suit. She relies on firearms, speed and precision rather than supernatural strength.",
+
+    abilities: [
+
+      {
+        name: "DUAL FIRE",
+        text: "Rapid ranged gunfire."
+      },
+
+      {
+        name: "COMBAT DASH",
+        text: "Quickly evades an attack or crosses a short distance."
+      },
+
+      {
+        name: "PRECISION SHOT",
+        text: "A powerful accurate shot against distant enemies."
+      }
+
+    ],
+
+    power: 68,
+    speed: 88,
+    defense: 48
+  },
+
+
+  {
+    id: "psychicGirl",
+
+    name: "PSYCHIC GIRL",
+
+    className: "TELEKINETIC",
+
+    team: "HERO",
+
+    color: "#ba8cff",
+
+    fallback: "✋",
+
+    description:
+      "An escaped psychic experiment with a buzz cut and terrifying telekinetic abilities. Heavy use of her powers causes visible physical strain.",
+
+    abilities: [
+
+      {
+        name: "TELEKINETIC PUSH",
+        text: "Throws an enemy backward using psychic force."
+      },
+
+      {
+        name: "MENTAL GRAB",
+        text: "Suspends or moves a target without touching them."
+      },
+
+      {
+        name: "PSYCHIC BLAST",
+        text: "Releases a powerful wave of telekinetic energy."
+      }
+
+    ],
+
+    power: 92,
+    speed: 62,
+    defense: 43
+  },
+
+
+  {
+    id: "fireGuardian",
+
+    name: "FIRE GUARDIAN",
+
+    className: "NATURE DEFENDER",
+
+    team: "HERO",
+
+    color: "#ff8638",
+
+    fallback: "🔥",
+
+    description:
+      "A living stone-and-tree guardian covered in grass and moss. His dark jacket channels glowing orange fire energy.",
+
+    abilities: [
+
+      {
+        name: "FIREBALL",
+        text: "Launches a burning projectile."
+      },
+
+      {
+        name: "FIREWALL",
+        text: "Creates a temporary wall of fire."
+      },
+
+      {
+        name: "EMBER SHIELD",
+        text: "Surrounds himself with a temporary protective barrier."
+      }
+
+    ],
+
+    power: 80,
+    speed: 42,
+    defense: 95
+  },
+
+
+  {
+    id: "nightmareSlasher",
+
+    name: "NIGHTMARE SLASHER",
+
+    className: "STALKER",
+
+    team: "VILLAIN",
+
+    color: "#a45a48",
+
+    fallback: "🔪",
+
+    description:
+      "A distorted nightmare figure dressed in worn retro clothing and an ugly old hat. He hunts opponents with blades and terrifying persistence.",
+
+    abilities: [
+
+      {
+        name: "KNIFE THROW",
+        text: "Throws a blade across the arena."
+      },
+
+      {
+        name: "SLASH",
+        text: "Powerful close-range knife attack."
+      },
+
+      {
+        name: "STALK",
+        text: "Moves quickly when pursuing a wounded opponent."
+      }
+
+    ],
+
+    power: 76,
+    speed: 75,
+    defense: 55
+  },
+
+
+  {
+    id: "tarMonster",
+
+    name: "TAR MONSTER",
+
+    className: "SHAPESHIFTER",
+
+    team: "VILLAIN",
+
+    color: "#5d6572",
+
+    fallback: "⬛",
+
+    description:
+      "A giant creature made entirely from living black tar. Its dripping body constantly reshapes itself as it hunts anything nearby.",
+
+    abilities: [
+
+      {
+        name: "TAR TENDRIL",
+        text: "Stretches an arm across the arena to strike or grab a target."
+      },
+
+      {
+        name: "SQUEEZE",
+        text: "Compresses its body and slips through tiny spaces."
+      },
+
+      {
+        name: "MIMIC",
+        text: "Reshapes itself into ordinary objects to hide."
+      }
+
+    ],
+
+    power: 90,
+    speed: 48,
+    defense: 90
+  },
+
+
+  {
+    id: "enemy3",
+
+    name: "UNKNOWN SUBJECT",
+
+    className: "CLASSIFIED",
+
+    team: "VILLAIN",
+
+    color: "#ff3d70",
+
+    fallback: "?",
+
+    description:
+      "Very little information exists about this subject. Its origin and abilities remain classified.",
+
+    abilities: [
+
+      {
+        name: "UNKNOWN",
+        text: "Ability data unavailable."
+      },
+
+      {
+        name: "UNKNOWN",
+        text: "Ability data unavailable."
+      },
+
+      {
+        name: "UNKNOWN",
+        text: "Ability data unavailable."
+      }
+
+    ],
+
+    power: 70,
+    speed: 70,
+    defense: 70
+  }
+
+];
+
+
+
+// ============================================================
+// CREATE STARS
+// ============================================================
+
+const starsContainer =
+  document.getElementById("stars");
+
+
+for (let i = 0; i < 120; i++) {
+
+  const star =
+    document.createElement("div");
+
+
+  star.className =
+    "star";
+
+
+  star.style.left =
+    Math.random() * 100 + "%";
+
+
+  star.style.top =
+    Math.random() * 100 + "%";
+
+
+  const size =
+    Math.random() * 2 + 1;
+
+
+  star.style.width =
+    size + "px";
+
+
+  star.style.height =
+    size + "px";
+
+
+  star.style.setProperty(
+    "--time",
+    (
+      Math.random() * 3 + 1
+    )
+    + "s"
+  );
+
+
+  starsContainer.appendChild(
+    star
+  );
+
+}
+
+
+
+// ============================================================
+// IMAGE HELPER
+// ============================================================
+
+function setImage(
+  imageElement,
+  fallbackElement,
+  url,
+  fallback
+) {
+
+  if (!url) {
+
+    imageElement.style.display =
+      "none";
+
+
+    fallbackElement.style.display =
+      "block";
+
+
+    fallbackElement.textContent =
+      fallback;
+
+
+    return;
+
+  }
+
+
+  imageElement.src =
+    url;
+
+
+  imageElement.style.display =
+    "block";
+
+
+  fallbackElement.style.display =
+    "none";
+
+
+  imageElement.onerror =
+    () => {
+
+      imageElement.style.display =
+        "none";
+
+
+      fallbackElement.style.display =
+        "block";
+
+
+      fallbackElement.textContent =
+        fallback;
+
+    };
+
+}
+
+
+
+// ============================================================
+// HERO IMAGE
+// ============================================================
+
+setImage(
+
+  document.getElementById(
+    "mainHeroImage"
+  ),
+
+  document.getElementById(
+    "mainHeroFallback"
+  ),
+
+  CHARACTER_IMAGES.redLizard,
+
+  "🦎"
+
+);
+
+
+
+// ============================================================
+// RENDER FIGHTER CARDS
+// ============================================================
+
+const fighterGrid =
+  document.getElementById(
+    "fighterGrid"
+  );
+
+
+fighters.forEach(
+  (
+    fighter,
+    index
+  ) => {
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "fighter-card";
+
+
+    if (index === 0) {
+
+      card.classList.add(
+        "active"
+      );
+
+    }
+
+
+    card.style.setProperty(
+      "--cardColor",
+      fighter.color
+    );
+
+
+    const imageUrl =
+      CHARACTER_IMAGES[
+        fighter.id
+      ];
+
+
+    card.innerHTML = `
+      <div class="fighter-image">
+
+        ${
+          imageUrl
+
+          ?
+
+          `<img src="${imageUrl}" alt="${fighter.name}">`
+
+          :
+
+          `<div class="card-fallback">${fighter.fallback}</div>`
+        }
+
+      </div>
+
+      <strong>
+        ${fighter.name}
+      </strong>
+
+      <small>
+        ${fighter.team} // ${fighter.className}
+      </small>
+    `;
+
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(
+            ".fighter-card"
+          )
+          .forEach(
+            item =>
+              item.classList.remove(
+                "active"
+              )
+          );
+
+
+        card.classList.add(
+          "active"
+        );
+
+
+        selectFighter(
+          fighter
+        );
+
+      }
+    );
+
+
+    fighterGrid.appendChild(
+      card
+    );
+
+  }
+);
+
+
+
+// ============================================================
+// SELECT FIGHTER
+// ============================================================
+
+const selectedImage =
+  document.getElementById(
+    "selectedImage"
+  );
+
+
+const selectedFallback =
+  document.getElementById(
+    "selectedFallback"
+  );
+
+
+function selectFighter(
+  fighter
+) {
+
+  setImage(
+
+    selectedImage,
+
+    selectedFallback,
+
+    CHARACTER_IMAGES[
+      fighter.id
+    ],
+
+    fighter.fallback
+
+  );
+
+
+  document.getElementById(
+    "selectedName"
+  ).textContent =
+    fighter.name;
+
+
+  document.getElementById(
+    "selectedClass"
+  ).textContent =
+    fighter.className;
+
+
+  document.getElementById(
+    "selectedDescription"
+  ).textContent =
+    fighter.description;
+
+
+  const team =
+    document.getElementById(
+      "selectedTeam"
+    );
+
+
+  team.textContent =
+    fighter.team;
+
+
+  team.classList.toggle(
+    "villain",
+    fighter.team === "VILLAIN"
+  );
+
+
+  const abilityContainer =
+    document.getElementById(
+      "selectedAbilities"
+    );
+
+
+  abilityContainer.innerHTML =
+    "";
+
+
+  fighter.abilities.forEach(
+    ability => {
+
+      const box =
+        document.createElement(
+          "div"
+        );
+
+
+      box.className =
+        "ability";
+
+
+      box.innerHTML = `
+        <strong>
+          ${ability.name}
+        </strong>
+
+        <span>
+          ${ability.text}
+        </span>
+      `;
+
+
+      abilityContainer.appendChild(
+        box
+      );
+
+    }
+  );
+
+
+  document.getElementById(
+    "powerBar"
+  ).style.width =
+    fighter.power + "%";
+
+
+  document.getElementById(
+    "speedBar"
+  ).style.width =
+    fighter.speed + "%";
+
+
+  document.getElementById(
+    "defenseBar"
+  ).style.width =
+    fighter.defense + "%";
+
+}
+
+
+
+// ============================================================
+// LOAD FIRST FIGHTER
+// ============================================================
+
+selectFighter(
+  fighters[0]
+);
+
+
+
+// ============================================================
+// MUSIC
+// ============================================================
+
+const musicButton =
+  document.getElementById(
+    "musicBtn"
+  );
+
+
+let music =
+  null;
+
+
+let musicPlaying =
+  false;
+
+
+musicButton.addEventListener(
+  "click",
+  () => {
+
+    if (!MUSIC_URL) {
+
+      musicButton.textContent =
+        "ADD MUSIC URL";
+
+      return;
+
+    }
+
+
+    if (!music) {
+
+      music =
+        new Audio(
+          MUSIC_URL
+        );
+
+
+      music.loop =
+        true;
+
+
+      music.volume =
+        0.35;
+
+    }
+
+
+    if (
+      musicPlaying
+    ) {
+
+      music.pause();
+
+
+      musicButton.textContent =
+        "MUSIC OFF";
+
+
+      musicPlaying =
+        false;
+
+    }
+
+    else {
+
+      music.play()
+        .catch(() => {});
+
+
+      musicButton.textContent =
+        "MUSIC ON";
+
+
+      musicPlaying =
+        true;
+
+    }
+
+  }
+);
